@@ -1,0 +1,1232 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A warm, modern restaurant experience. Explore our menu and reserve your table."
+    />
+    <title>Olive & Ember — A Modern Dining Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #f8f5ee;
+        --paper: #fffdf8;
+        --ink: #20231d;
+        --muted: #77796f;
+        --olive: #566347;
+        --olive-dark: #3c4933;
+        --clay: #c66c4d;
+        --line: #e5e0d5;
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "DM Sans", Arial, sans-serif;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+      }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.6;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+      .wrap {
+        width: min(1160px, 90%);
+        margin: auto;
+      }
+      .eyebrow {
+        color: var(--clay);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.19em;
+        text-transform: uppercase;
+      }
+      .section-title {
+        font: 600 clamp(2.1rem, 4vw, 3.5rem)/1.12 var(--serif);
+        letter-spacing: -0.035em;
+        margin: 0.5rem 0 1rem;
+      }
+      .section-copy {
+        color: var(--muted);
+        max-width: 560px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.65rem;
+        padding: 14px 21px;
+        border-radius: 3px;
+        border: 1px solid var(--olive);
+        background: var(--olive);
+        color: #fff;
+        font-weight: 700;
+        transition:
+          transform 0.25s,
+          background 0.25s,
+          box-shadow 0.25s;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background: var(--olive-dark);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 24px #28301d20;
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--ink);
+        border-color: #ffffffa8;
+      }
+      .btn-outline:hover {
+        color: white;
+        border-color: var(--olive);
+        background: var(--olive);
+      }
+      header {
+        height: 82px;
+        display: flex;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: #f8f5eeef;
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid #e5e0d580;
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font: 700 1.2rem var(--serif);
+        letter-spacing: -0.03em;
+      }
+      .brand-mark {
+        width: 35px;
+        height: 35px;
+        border: 1px solid var(--olive);
+        color: var(--olive);
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        font: 600 1.2rem var(--serif);
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        font-size: 0.9rem;
+        color: #55584f;
+      }
+      .nav-links a:hover {
+        color: var(--clay);
+      }
+      .nav-cta {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+      }
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: 0;
+        font-size: 1.5rem;
+      }
+      .hero {
+        padding: 44px 0 74px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 0.92fr 1.08fr;
+        gap: 5.5%;
+        align-items: center;
+        min-height: 550px;
+      }
+      .hero h1 {
+        font: 600 clamp(3.1rem, 6.5vw, 5.8rem)/0.99 var(--serif);
+        letter-spacing: -0.055em;
+        margin: 18px 0 22px;
+      }
+      .hero h1 em {
+        color: var(--olive);
+        font-weight: 500;
+      }
+      .hero-copy {
+        color: var(--muted);
+        max-width: 440px;
+        font-size: 1.03rem;
+      }
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 28px;
+      }
+      .hero-note {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-top: 38px;
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .stars {
+        color: #b8753c;
+        letter-spacing: 0.1em;
+      }
+      .hero-visual {
+        position: relative;
+        min-height: 500px;
+      }
+      .hero-image {
+        position: absolute;
+        inset: 0 0 20px 35px;
+        background:
+          linear-gradient(180deg, #00000000 55%, #00000050),
+          url("https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1400&q=85")
+            center/cover;
+        border-radius: 48% 48% 4px 4px;
+        box-shadow: 0 22px 55px #3634251c;
+      }
+      .image-label {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        background: var(--paper);
+        padding: 20px 23px;
+        max-width: 230px;
+        box-shadow: 0 12px 35px #20231d16;
+      }
+      .image-label strong {
+        display: block;
+        font: 600 1.35rem var(--serif);
+      }
+      .image-label span {
+        color: var(--muted);
+        font-size: 0.82rem;
+      }
+      .trust-strip {
+        background: var(--olive);
+        color: #fff;
+        padding: 20px 0;
+      }
+      .trust-items {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+      }
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 0.9rem;
+      }
+      .trust-item b {
+        font-weight: 600;
+      }
+      .trust-icon {
+        font-size: 1.15rem;
+        color: #e5c3a2;
+      }
+      section {
+        padding: 92px 0;
+      }
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 25px;
+        margin-bottom: 34px;
+      }
+      .section-head .section-copy {
+        max-width: 390px;
+      }
+      .menu-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      .dish {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+        overflow: hidden;
+      }
+      .dish:hover {
+        transform: translateY(-7px);
+        box-shadow: 0 18px 35px #26251d12;
+      }
+      .dish-img {
+        height: 225px;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+      }
+      .dish-tag {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        background: var(--paper);
+        padding: 6px 10px;
+        font-size: 0.7rem;
+        letter-spacing: 0.07em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+      .dish-content {
+        padding: 21px;
+      }
+      .dish-title-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        align-items: start;
+      }
+      .dish h3 {
+        font: 600 1.35rem var(--serif);
+        margin: 0;
+      }
+      .price {
+        font-weight: 700;
+        color: var(--olive);
+        white-space: nowrap;
+      }
+      .dish p {
+        font-size: 0.88rem;
+        color: var(--muted);
+        margin: 9px 0 0;
+      }
+      .menu-bottom {
+        text-align: center;
+        margin-top: 34px;
+      }
+      .story {
+        background: #eeeadf;
+      }
+      .story-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        gap: 8%;
+      }
+      .story-visual {
+        height: 475px;
+        position: relative;
+      }
+      .story-visual img {
+        width: 83%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 3px;
+      }
+      .story-visual:after {
+        content: "";
+        position: absolute;
+        right: 0;
+        bottom: -18px;
+        width: 43%;
+        height: 55%;
+        border: 1px solid var(--clay);
+        z-index: 0;
+      }
+      .story-visual img {
+        position: relative;
+        z-index: 1;
+      }
+      .story-copy .section-copy {
+        margin-bottom: 25px;
+      }
+      .story-stats {
+        display: flex;
+        gap: 35px;
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid #d6d0c3;
+      }
+      .stat strong {
+        display: block;
+        font: 600 1.8rem var(--serif);
+        color: var(--olive);
+      }
+      .stat span {
+        font-size: 0.8rem;
+        color: var(--muted);
+      }
+      .experience-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        margin-top: 38px;
+      }
+      .experience {
+        padding: 26px 23px;
+        border-top: 2px solid var(--olive);
+        background: #fffdf86b;
+      }
+      .experience .symbol {
+        font-size: 1.5rem;
+      }
+      .experience h3 {
+        font: 600 1.3rem var(--serif);
+        margin: 12px 0 8px;
+      }
+      .experience p {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin: 0;
+      }
+      .quote {
+        background: var(--olive-dark);
+        color: white;
+        text-align: center;
+        padding: 72px 20px;
+      }
+      .quote blockquote {
+        font: 500 clamp(1.6rem, 3.4vw, 2.7rem)/1.3 var(--serif);
+        max-width: 850px;
+        margin: 15px auto 20px;
+      }
+      .quote .eyebrow {
+        color: #e4b59b;
+      }
+      .quote p {
+        color: #d4d8ce;
+        font-size: 0.85rem;
+      }
+      .booking {
+        background: var(--paper);
+      }
+      .booking-grid {
+        display: grid;
+        grid-template-columns: 0.8fr 1.2fr;
+        gap: 8%;
+        align-items: start;
+      }
+      .booking-aside {
+        position: sticky;
+        top: 110px;
+      }
+      .booking-info {
+        display: grid;
+        gap: 17px;
+        margin-top: 28px;
+      }
+      .info-row {
+        display: flex;
+        gap: 13px;
+        align-items: start;
+      }
+      .info-icon {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        background: #e9ecdf;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+      .info-row strong {
+        display: block;
+        font-size: 0.9rem;
+      }
+      .info-row span {
+        display: block;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+      .booking-form {
+        background: var(--cream);
+        padding: clamp(22px, 4vw, 40px);
+        border: 1px solid var(--line);
+      }
+      .booking-form h3 {
+        font: 600 1.8rem var(--serif);
+        margin: 0 0 6px;
+      }
+      .booking-form > p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        margin: 0 0 25px;
+      }
+      .form-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 17px;
+      }
+      .field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+      .field.full {
+        grid-column: 1/-1;
+      }
+      .field label {
+        font-size: 0.8rem;
+        font-weight: 700;
+      }
+      .field input,
+      .field select,
+      .field textarea {
+        width: 100%;
+        padding: 13px 12px;
+        border: 1px solid #d8d4c9;
+        background: #fffdf9;
+        border-radius: 2px;
+        outline: none;
+        color: var(--ink);
+        transition:
+          border 0.2s,
+          box-shadow 0.2s;
+      }
+      .field input:focus,
+      .field select:focus,
+      .field textarea:focus {
+        border-color: var(--olive);
+        box-shadow: 0 0 0 3px #56634719;
+      }
+      .field textarea {
+        min-height: 85px;
+        resize: vertical;
+      }
+      .form-submit {
+        margin-top: 20px;
+        width: 100%;
+      }
+      .form-note {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin: 12px 0 0;
+      }
+      .form-message {
+        display: none;
+        margin-top: 16px;
+        padding: 12px;
+        background: #e6eddf;
+        color: #34442b;
+        font-size: 0.9rem;
+      }
+      footer {
+        background: #20251d;
+        color: #f8f5ee;
+        padding: 48px 0 22px;
+      }
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        align-items: start;
+        padding-bottom: 35px;
+      }
+      .footer-brand p {
+        color: #b7bbae;
+        max-width: 330px;
+        font-size: 0.88rem;
+      }
+      .footer-links {
+        display: flex;
+        gap: 22px;
+        flex-wrap: wrap;
+        color: #d3d7cc;
+        font-size: 0.86rem;
+      }
+      .footer-bottom {
+        border-top: 1px solid #ffffff20;
+        padding-top: 18px;
+        display: flex;
+        justify-content: space-between;
+        gap: 15px;
+        flex-wrap: wrap;
+        color: #aeb4a4;
+        font-size: 0.78rem;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.75s ease,
+          transform 0.75s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .delay-1 {
+        transition-delay: 0.12s;
+      }
+      .delay-2 {
+        transition-delay: 0.22s;
+      }
+      @media (max-width: 800px) {
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 81px;
+          left: 0;
+          right: 0;
+          background: var(--cream);
+          padding: 22px 5%;
+          border-bottom: 1px solid var(--line);
+          flex-direction: column;
+          align-items: stretch;
+          gap: 17px;
+        }
+        .nav-links.open {
+          display: flex;
+        }
+        .nav-cta {
+          display: none;
+        }
+        .menu-toggle {
+          display: block;
+        }
+        .hero {
+          padding-top: 28px;
+        }
+        .hero-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .hero h1 {
+          font-size: clamp(3.2rem, 12vw, 5rem);
+        }
+        .hero-visual {
+          min-height: 420px;
+        }
+        .hero-image {
+          left: 20px;
+        }
+        .section-head {
+          align-items: start;
+          flex-direction: column;
+        }
+        .menu-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .story-grid,
+        .booking-grid {
+          grid-template-columns: 1fr;
+          gap: 45px;
+        }
+        .story-visual {
+          height: 380px;
+          max-width: 550px;
+          width: 100%;
+        }
+        .booking-aside {
+          position: static;
+        }
+        .experience-grid {
+          grid-template-columns: 1fr;
+        }
+        .trust-items {
+          justify-content: center;
+        }
+        .trust-item {
+          width: 43%;
+        }
+      }
+      @media (max-width: 520px) {
+        .wrap {
+          width: 90%;
+        }
+        .hero-visual {
+          min-height: 350px;
+        }
+        .image-label {
+          max-width: 200px;
+          padding: 15px;
+        }
+        .menu-grid {
+          grid-template-columns: 1fr;
+        }
+        .dish-img {
+          height: 245px;
+        }
+        section {
+          padding: 68px 0;
+        }
+        .story-visual {
+          height: 320px;
+        }
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+        .field.full {
+          grid-column: auto;
+        }
+        .trust-item {
+          width: 100%;
+          justify-content: center;
+        }
+        .footer-top {
+          flex-direction: column;
+        }
+        .footer-links {
+          gap: 16px;
+        }
+        .story-stats {
+          gap: 20px;
+        }
+        .stat strong {
+          font-size: 1.55rem;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *:before,
+        *:after {
+          animation-duration: 0.01ms !important;
+          transition-duration: 0.01ms !important;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <a class="brand" href="#home" aria-label="Olive and Ember home"
+          ><span class="brand-mark">O</span> Olive &amp; Ember</a
+        >
+        <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+          <a href="#menu">Our Menu</a><a href="#story">Our Story</a
+          ><a href="#experience">The Experience</a
+          ><a href="#booking">Visit Us</a>
+        </nav>
+        <a class="btn nav-cta" href="#booking">Book a table <span>↗</span></a>
+        <button
+          class="menu-toggle"
+          id="menuToggle"
+          aria-label="Open navigation"
+          aria-expanded="false"
+        >
+          ☰
+        </button>
+      </div>
+    </header>
+    <main>
+      <section class="hero" id="home">
+        <div class="wrap hero-grid">
+          <div class="hero-copy-block reveal">
+            <div class="eyebrow">Good food. Good company.</div>
+            <h1>A little taste of <em>something</em> special.</h1>
+            <p class="hero-copy">
+              Thoughtfully prepared dishes, seasonal ingredients, and the kind
+              of atmosphere that makes you want to stay a little longer.
+            </p>
+            <div class="hero-actions">
+              <a class="btn" href="#menu">Explore our menu <span>↗</span></a
+              ><a class="btn btn-outline" href="#booking">Reserve a table</a>
+            </div>
+            <div class="hero-note">
+              <span class="stars">★★★★★</span
+              ><span>Made with care, served with warmth</span>
+            </div>
+          </div>
+          <div
+            class="hero-visual reveal delay-1"
+            aria-label="Restaurant dining and food"
+          >
+            <div class="hero-image"></div>
+            <div class="image-label">
+              <strong>Gather around.</strong
+              ><span>Fresh flavours, memorable moments.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+      <div class="trust-strip">
+        <div class="wrap trust-items">
+          <div class="trust-item">
+            <span class="trust-icon">✳</span><b>Fresh, quality ingredients</b>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">♡</span><b>Made fresh to order</b>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">◷</span><b>Perfect for every occasion</b>
+          </div>
+          <div class="trust-item">
+            <span class="trust-icon">✦</span><b>Warm, welcoming service</b>
+          </div>
+        </div>
+      </div>
+      <section id="menu">
+        <div class="wrap">
+          <div class="section-head reveal">
+            <div>
+              <div class="eyebrow">A few favourites</div>
+              <h2 class="section-title">Made to be remembered.</h2>
+            </div>
+            <p class="section-copy">
+              A little something for every appetite. Explore a few of the dishes
+              our guests love most.
+            </p>
+          </div>
+          <div class="menu-grid">
+            <article class="dish reveal">
+              <div
+                class="dish-img"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+              >
+                <span class="dish-tag">Guest favourite</span>
+              </div>
+              <div class="dish-content">
+                <div class="dish-title-row">
+                  <h3>Garden Herb Pasta</h3>
+                  <span class="price">₹349</span>
+                </div>
+                <p>
+                  Fresh herbs, parmesan, seasonal greens and a silky house-made
+                  sauce.
+                </p>
+              </div>
+            </article>
+            <article class="dish reveal delay-1">
+              <div
+                class="dish-img"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+              >
+                <span class="dish-tag">Chef's pick</span>
+              </div>
+              <div class="dish-content">
+                <div class="dish-title-row">
+                  <h3>Smoky Grill Platter</h3>
+                  <span class="price">₹499</span>
+                </div>
+                <p>
+                  Bold, smoky flavours with a vibrant side salad and our
+                  signature dip.
+                </p>
+              </div>
+            </article>
+            <article class="dish reveal delay-2">
+              <div
+                class="dish-img"
+                style="
+                  background-image: url(&quot;https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=900&q=80&quot;);
+                "
+              >
+                <span class="dish-tag">A classic</span>
+              </div>
+              <div class="dish-content">
+                <div class="dish-title-row">
+                  <h3>Stone-Baked Special</h3>
+                  <span class="price">₹399</span>
+                </div>
+                <p>
+                  A crisp golden base, rich tomato, melted cheese and fresh
+                  toppings.
+                </p>
+              </div>
+            </article>
+          </div>
+          <div class="menu-bottom reveal">
+            <a href="#booking" class="btn">Come hungry <span>↗</span></a>
+          </div>
+        </div>
+      </section>
+      <section class="story" id="story">
+        <div class="wrap story-grid">
+          <div class="story-visual reveal">
+            <img
+              src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85"
+              alt="Warmly lit restaurant dining table"
+              loading="lazy"
+            />
+          </div>
+          <div class="story-copy reveal delay-1">
+            <div class="eyebrow">More than a meal</div>
+            <h2 class="section-title">A place to slow down and savour.</h2>
+            <p class="section-copy">
+              We believe the best meals are about more than what's on the plate.
+              They're the long conversations, the first bites, the spontaneous
+              celebrations, and the people around your table.
+            </p>
+            <p class="section-copy">
+              That's why we bring together honest ingredients, thoughtful
+              cooking, and a relaxed atmosphere—so every visit feels a little
+              special.
+            </p>
+            <a href="#booking" class="btn"
+              >Make it your moment <span>↗</span></a
+            >
+            <div class="story-stats">
+              <div class="stat">
+                <strong>Fresh</strong><span>Ingredients daily</span>
+              </div>
+              <div class="stat">
+                <strong>Local</strong><span>Seasonal inspiration</span>
+              </div>
+              <div class="stat">
+                <strong>Always</strong><span>Made with care</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="experience">
+        <div class="wrap">
+          <div class="reveal">
+            <div class="eyebrow">Your table is waiting</div>
+            <h2 class="section-title">For every kind of get-together.</h2>
+            <p class="section-copy">
+              A quick catch-up, a family dinner or a reason to celebrate—we'll
+              help make it feel just right.
+            </p>
+          </div>
+          <div class="experience-grid">
+            <article class="experience reveal">
+              <div class="symbol">☕</div>
+              <h3>Everyday escapes</h3>
+              <p>
+                Take a break from the rush with comforting favourites and a
+                welcoming atmosphere.
+              </p>
+            </article>
+            <article class="experience reveal delay-1">
+              <div class="symbol">♡</div>
+              <h3>Moments together</h3>
+              <p>
+                Bring your favourite people together over good food and
+                unhurried conversation.
+              </p>
+            </article>
+            <article class="experience reveal delay-2">
+              <div class="symbol">✧</div>
+              <h3>Little celebrations</h3>
+              <p>
+                Birthdays, date nights or just-because dinners—make an ordinary
+                day memorable.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+      <div class="quote">
+        <div class="eyebrow">The best things are shared</div>
+        <blockquote>“Good food is the beginning of a good memory.”</blockquote>
+        <p>Come for the flavours. Stay for the feeling.</p>
+      </div>
+      <section class="booking" id="booking">
+        <div class="wrap booking-grid">
+          <aside class="booking-aside reveal">
+            <div class="eyebrow">Let's save you a seat</div>
+            <h2 class="section-title">Your table, your time.</h2>
+            <p class="section-copy">
+              Planning a meal with friends or a special evening for two? Send us
+              your details and we'll help arrange your visit.
+            </p>
+            <div class="booking-info">
+              <div class="info-row">
+                <span class="info-icon">⌖</span>
+                <div>
+                  <strong>Find us</strong
+                  ><span>Replace with the restaurant's address</span>
+                </div>
+              </div>
+              <div class="info-row">
+                <span class="info-icon">◷</span>
+                <div>
+                  <strong>Opening hours</strong
+                  ><span>Add your current opening hours</span>
+                </div>
+              </div>
+              <div class="info-row">
+                <span class="info-icon">☎</span>
+                <div>
+                  <strong>Call us</strong
+                  ><span>Add your restaurant phone number</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+          <form class="booking-form reveal delay-1" id="bookingForm">
+            <h3>Book a table</h3>
+            <p>Fill in the details below to request your reservation.</p>
+
+            <div style="position: absolute; left: -9999px" aria-hidden="true">
+              <label for="website">Leave this field empty</label>
+              <input
+                type="text"
+                id="website"
+                name="website"
+                tabindex="-1"
+                autocomplete="off"
+              />
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="name">Your name *</label
+                ><input
+                  id="name"
+                  name="name"
+                  autocomplete="name"
+                  placeholder="Full name"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="phone">Phone number *</label
+                ><input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="+91 98765 43210"
+                  pattern="[0-9+() -]{8,18}"
+                  required
+                />
+              </div>
+              <div class="field">
+                <label for="date">Date *</label
+                ><input id="date" name="date" type="date" required />
+              </div>
+              <div class="field">
+                <label for="time">Time *</label
+                ><select id="time" name="time" required>
+                  <option value="">Choose a time</option>
+                  <option>12:00 PM</option>
+                  <option>12:30 PM</option>
+                  <option>1:00 PM</option>
+                  <option>1:30 PM</option>
+                  <option>2:00 PM</option>
+                  <option>6:00 PM</option>
+                  <option>6:30 PM</option>
+                  <option>7:00 PM</option>
+                  <option>7:30 PM</option>
+                  <option>8:00 PM</option>
+                  <option>8:30 PM</option>
+                  <option>9:00 PM</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="guests">Number of guests *</label
+                ><select id="guests" name="guests" required>
+                  <option value="">Select guests</option>
+                  <option>1 guest</option>
+                  <option>2 guests</option>
+                  <option>3 guests</option>
+                  <option>4 guests</option>
+                  <option>5 guests</option>
+                  <option>6 guests</option>
+                  <option>7+ guests</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="occasion">Occasion</label
+                ><select id="occasion" name="occasion">
+                  <option>Just a meal</option>
+                  <option>Birthday</option>
+                  <option>Date night</option>
+                  <option>Family gathering</option>
+                  <option>Business meeting</option>
+                  <option>Other celebration</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="requests">Special requests (optional)</label
+                ><textarea
+                  id="requests"
+                  name="requests"
+                  placeholder="Dietary needs, seating preferences, or anything we should know…"
+                ></textarea>
+              </div>
+            </div>
+            <button class="btn form-submit" type="submit">
+              Request my reservation <span>↗</span>
+            </button>
+            <p class="form-note">
+              This demo form does not send a booking to the restaurant yet.
+              Connect it to your email, WhatsApp or booking backend before
+              publishing.
+            </p>
+            <div
+              class="form-message"
+              id="formMessage"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </form>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap">
+        <div class="footer-top">
+          <div class="footer-brand">
+            <a class="brand" href="#home"
+              ><span
+                class="brand-mark"
+                style="color: #e5c3a2; border-color: #e5c3a2"
+                >O</span
+              >
+              Olive &amp; Ember</a
+            >
+            <p>
+              Thoughtful food, welcoming people, and memorable moments around
+              the table.
+            </p>
+          </div>
+          <div class="footer-links">
+            <a href="#menu">Menu</a><a href="#story">Our story</a
+            ><a href="#experience">Experience</a
+            ><a href="#booking">Reservations</a>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span
+            >© <span id="year"></span> Olive &amp; Ember. All rights
+            reserved.</span
+          ><span>Made for good food and good company.</span>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const toggle = document.getElementById("menuToggle");
+      const nav = document.getElementById("navLinks");
+      toggle.addEventListener("click", () => {
+        const open = nav.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.textContent = open ? "✕" : "☰";
+      });
+      nav.querySelectorAll("a").forEach((link) =>
+        link.addEventListener("click", () => {
+          nav.classList.remove("open");
+          toggle.setAttribute("aria-expanded", "false");
+          toggle.textContent = "☰";
+        }),
+      );
+      const observer = new IntersectionObserver(
+        (entries) =>
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              observer.unobserve(entry.target);
+            }
+          }),
+        { threshold: 0.12 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+      document.getElementById("year").textContent = new Date().getFullYear();
+      const dateInput = document.getElementById("date");
+      const today = new Date();
+      dateInput.min = new Date(
+        today.getTime() - today.getTimezoneOffset() * 60000,
+      )
+        .toISOString()
+        .split("T")[0];
+
+      const SUPABASE_URL = "https://aekjuckxxiholzuayzig.supabase.co";
+      const SUPABASE_PUBLISHABLE_KEY =
+        "sb_publishable_nhhqo9NzsDLG5Bg2mNILdg_4uP2M0Rc";
+
+      // Load the Supabase JavaScript library.
+      const supabaseReady =
+        import("https://esm.sh/@supabase/supabase-js@2").then(
+          ({ createClient }) =>
+            createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY),
+        );
+
+      const bookingForm = document.getElementById("bookingForm");
+      const submitButton = bookingForm.querySelector('button[type="submit"]');
+      const formMessage = document.getElementById("formMessage");
+
+      bookingForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        if (!bookingForm.reportValidity()) return;
+
+        // Ignore submissions caught by the hidden honeypot field.
+        if (bookingForm.elements.website.value.trim() !== "") return;
+
+        const originalText = submitButton.innerHTML;
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending request...";
+        formMessage.style.display = "none";
+
+        try {
+          const supabase = await supabaseReady;
+          const formData = new FormData(bookingForm);
+
+          const reservation = {
+            name: formData.get("name").trim(),
+            phone: formData.get("phone").trim(),
+            booking_date: formData.get("date"),
+            booking_time: formData.get("time"),
+            guests: formData.get("guests"),
+            occasion: formData.get("occasion") || null,
+            special_requests: formData.get("requests").trim() || null,
+          };
+
+          const { error } = await supabase
+            .from("reservations")
+            .insert(reservation);
+
+          if (error) throw error;
+
+          formMessage.textContent =
+            "Your reservation request was submitted successfully. " +
+            "The restaurant will confirm your booking separately.";
+
+          formMessage.style.display = "block";
+          bookingForm.reset();
+        } catch (error) {
+          console.error("Reservation submission failed:", error);
+
+          formMessage.textContent =
+            "We couldn't submit your request. Please try again " +
+            "or contact the restaurant directly.";
+
+          formMessage.style.display = "block";
+        } finally {
+          submitButton.disabled = false;
+          submitButton.innerHTML = originalText;
+        }
+      });
+    </script>
+  </body>
+</html>
